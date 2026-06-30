@@ -1,6 +1,6 @@
 # Ecommerce - Marketplace API
 
-Backend desarrollado en **Java + Spring Boot** para un marketplace de productos. Permite gestionar usuarios, categorías, productos y carritos de compra, con persistencia en **MySQL** mediante JPA/Hibernate. Incluye un frontend simple en HTML, CSS y JavaScript servido por el propio backend.
+Backend desarrollado en **Java + Spring Boot** para un marketplace de productos. Permite gestionar usuarios, categorías, productos y carritos de compra, con persistencia en **MySQL** mediante JPA/Hibernate. Incluye un frontend simple en HTML, CSS y JavaScript.
 
 ## Características
 
