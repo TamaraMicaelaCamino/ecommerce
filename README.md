@@ -205,6 +205,3 @@ src/main/resources/
 └── application.properties
 ```
 
-## Notas
-
-Este es un proyecto educativo/de práctica. Algunas funcionalidades de seguridad (autenticación con tokens, hash de contraseñas) están planificadas como mejora futura y no forman parte del alcance actual de la entrega.
