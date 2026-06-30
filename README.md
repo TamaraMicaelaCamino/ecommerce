@@ -6,7 +6,7 @@ API REST para la gestión de un sistema de comercio (e-commerce), desarrollada c
 
 ## 📋 Descripción del proyecto
 
-Este proyecto implementa el backend de una aplicación de comercio electrónico, exponiendo una API REST documentada con **Swagger / OpenAPI**, que permite:
+Este proyecto implementa el backend de una aplicación de comercio, exponiendo una API REST documentada con **Swagger / OpenAPI**, que permite:
 
 - **Gestión de usuarios**: `POST`, `GET`, `DELETE`, con asignación de roles (`ROLE_ADMIN`, `ROLE_USER`, etc.).
 - **Gestión de categorías**: CRUD completo de categorías de productos.
