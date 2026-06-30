@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - Talento Tech Ecommerce</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .registro-container {
+            max-width: 440px;
+            margin: 80px auto;
+            background: #f5f5f5;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .registro-container h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #088178;
+        }
+        .registro-container input,
+        .registro-container select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 14px;
+            background: #fff;
+        }
+        .registro-container select {
+            cursor: pointer;
+            color: #333;
+        }
+        .registro-container button {
+            width: 100%;
+            padding: 12px;
+            background: #088178;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .registro-container button:hover {
+            background: #066b62;
+        }
+        .registro-container p {
+            text-align: center;
+            margin-top: 15px;
+        }
+        .registro-container a {
+            color: #088178;
+        }
+        .role-label {
+            display: block;
+            font-size: 13px;
+            color: #555;
+            margin-bottom: 6px;
+        }
+        .admin-warning {
+            background: #fff8e1;
+            border: 1px solid #f0c040;
+            border-radius: 5px;
+            padding: 10px 14px;
+            font-size: 12px;
+            color: #8a6200;
+            margin-bottom: 15px;
+            display: none;
+        }
+        .admin-warning.show {
+            display: block;
+        }
+        #mensajeError {
+            color: red;
+            text-align: center;
+            margin-bottom: 10px;
+            min-height: 18px;
+        }
+        #mensajeExito {
+            color: green;
+            text-align: center;
+            margin-bottom: 10px;
+            min-height: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== HEADER ==================== -->
+    <header class="header">
+        <a href="../index.html">
+            <img src="../img/logo1.png" class="logo" alt="Logo Talento Tech" width="40px" height="40px">
+        </a>
+        <div>
+            <ul id="navbar" class="navbar">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="tienda.html">Tienda</a></li>
+                <!-- Iniciar Sesión y Registrarse eliminados -->
+                <li>
+                    <a href="carrito.html">
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <a href="#" id="close" class="close">
+                    <i class="far fa-times" aria-hidden="true"></i>
+                </a>
+            </ul>
+        </div>
+        <div class="mobile">
+            <a href="carrito.html">
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+            </a>
+            <i id="bar" class="fas fa-outdent"></i>
+        </div>
+    </header>
+
+    <main>
+        <div class="registro-container">
+            <h2>Crear cuenta</h2>
+
+            <p id="mensajeError"></p>
+            <p id="mensajeExito"></p>
+
+            <input type="text" id="nombre" placeholder="Nombre completo">
+            <input type="email" id="email" placeholder="Email">
+           <div style="position: relative; margin-bottom: 15px;">
+    <input type="password" id="password" placeholder="Contraseña (mín. 8 caracteres)" style="margin-bottom: 0; padding-right: 40px;">
+    <i class="fa fa-eye" id="togglePassword" onclick="togglePasswordVisibility('password', 'togglePassword')"
+       style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #888;"></i>
+</div>
+
+<div style="position: relative; margin-bottom: 15px;">
+    <input type="password" id="confirmar" placeholder="Confirmar contraseña" style="margin-bottom: 0; padding-right: 40px;">
+    <i class="fa fa-eye" id="toggleConfirmar" onclick="togglePasswordVisibility('confirmar', 'toggleConfirmar')"
+       style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #888;"></i>
+</div> 
+            <span class="role-label">Tipo de cuenta</span>
+           <select id="rol" onchange="onRolChange()">
+    <option value="">-- Seleccioná un rol --</option>
+    <option value="ROLE_USER">Usuario</option>
+    <option value="ROLE_ADMIN">Administrador</option>
+</select>
+
+            <div class="admin-warning" id="adminWarning">
+                Los administradores tienen acceso completo al panel de gestión. Asegurate de que sea correcto.
+            </div>
+
+            <button onclick="registrar()">Crear cuenta</button>
+
+            <p>¿Ya tenés cuenta? <a href="login.html">Iniciá sesión</a></p>
+        </div>
+    </main>
+
+    <script src="../script/registro.js"></script>
+    <script src="../script/script.js"></script>
+
+</body>
+</html>

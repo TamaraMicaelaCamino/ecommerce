@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Talento Tech Ecommerce</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .login-container {
+            max-width: 400px;
+            margin: 80px auto;
+            background: #f5f5f5;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .login-container h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #088178;
+        }
+        .login-container input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+.campo-password {
+    position: relative;
+    width: 100%;
+}
+
+.campo-password input {
+    margin-bottom: 0;
+}
+
+.campo-password {
+    margin-bottom: 15px;
+}
+
+.icono-ojo {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #888;
+}
+
+.icono-ojo:hover {
+    color: #088178;
+}
+
+
+        .login-container button {
+            width: 100%;
+            padding: 12px;
+            background: #088178;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .login-container button:hover {
+            background: #066b62;
+        }
+        .login-container p {
+            text-align: center;
+            margin-top: 15px;
+        }
+        .login-container a {
+            color: #088178;
+        }
+        #mensajeError {
+            color: red;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ==================== HEADER ==================== -->
+    <header class="header">
+        <a href="../index.html">
+            <img src="../img/logo1.png" class="logo" alt="Logo Talento Tech" width="40px" height="40px">
+        </a>
+        <div>
+            <ul id="navbar" class="navbar">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="tienda.html">Tienda</a></li>
+                <!-- Iniciar Sesión eliminado -->
+                <li>
+                    <a href="carrito.html">
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <a href="#" id="close" class="close">
+                    <i class="far fa-times" aria-hidden="true"></i>
+                </a>
+            </ul>
+        </div>
+        <div class="mobile">
+            <a href="carrito.html">
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+            </a>
+            <i id="bar" class="fas fa-outdent"></i>
+        </div>
+    </header>
+
+    <main>
+        <div class="login-container">
+            <h2>Iniciar Sesión</h2>
+
+            <p id="mensajeError"></p>
+
+            <input type="email" id="email" placeholder="Email">
+            
+<div class="campo-password">
+    <input type="password" id="password" placeholder="Contraseña">
+    <i id="toggle-password" class="far fa-eye icono-ojo"></i>
+</div>
+
+
+            <button onclick="login()">Ingresar</button>
+
+            <p>¿No tenés cuenta? <a href="registro.html">Registrate</a></p>
+        </div>
+    </main>
+
+    <script src="../script/login.js"></script>
+    <script src="../script/script.js"></script>
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const passwordInput = document.getElementById('password');
+        const togglePassword = document.getElementById('toggle-password');
+
+        togglePassword.addEventListener('click', () => {
+            const esPassword = passwordInput.getAttribute('type') === 'password';
+            passwordInput.setAttribute('type', esPassword ? 'text' : 'password');
+            togglePassword.classList.toggle('fa-eye');
+            togglePassword.classList.toggle('fa-eye-slash');
+        });
+    });
+</script>
+
+</body>
+</html>
