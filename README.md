@@ -4,9 +4,9 @@ Backend desarrollado en **Java + Spring Boot** para un marketplace de productos.
 
 ## Características
 
-- CRUD completo de productos y categorías
+- CRUD completo de productos, categorías y carritos
 - Gestión de usuarios con roles (`ROLE_ADMIN`, `ROLE_USER`)
-- Carrito de compras por usuario: agregar, quitar y actualizar cantidades de productos, con control de stock
+- Carrito de compras por usuario: agregar, quitar y actualizar cantidades de productos con control de stock
 - Validaciones de datos con Bean Validation (`jakarta.validation`)
 - Manejo centralizado de errores con `@RestControllerAdvice`
 - Documentación interactiva de la API con Swagger / OpenAPI
@@ -14,7 +14,7 @@ Backend desarrollado en **Java + Spring Boot** para un marketplace de productos.
 
 ## Tecnologías
 
-- Java 22
+- Java 17
 - Spring Boot 4
 - Spring Data JPA / Hibernate
 - MySQL 8
@@ -25,21 +25,14 @@ Backend desarrollado en **Java + Spring Boot** para un marketplace de productos.
 
 ## Requisitos previos
 
-- JDK 22 instalado
-- Maven (o usar el wrapper `mvnw` si está incluido)
+- JDK 17 instalado
+- Maven 
 - MySQL Server corriendo localmente (puerto 3306 por defecto)
-- Un cliente para crear la base de datos (MySQL Workbench, DBeaver, o la terminal de MySQL)
+- Un cliente para crear la base de datos (MySQL Workbench)
 
 ## Instrucciones para ejecutar la aplicación
 
-### 1. Clonar el repositorio
-
-```bash
-git clone https://github.com/TU_USUARIO/TU_REPO.git
-cd TU_REPO
-```
-
-### 2. Crear la base de datos
+### 1. Crear la base de datos
 
 Conectate a tu servidor MySQL y creá la base de datos vacía (las tablas se generan automáticamente al levantar la app):
 
@@ -47,14 +40,9 @@ Conectate a tu servidor MySQL y creá la base de datos vacía (las tablas se gen
 CREATE DATABASE ecommerce;
 ```
 
-### 3. Configurar las credenciales
+### 2. Configurar las credenciales
 
 La contraseña de la base de datos no está hardcodeada en el proyecto por seguridad. Se obtiene de una variable de entorno llamada `DB_PASSWORD`. Antes de correr la aplicación, definila con tu propia contraseña de MySQL:
-
-**En PowerShell:**
-```powershell
-$env:DB_PASSWORD="tu_password_de_mysql"
-```
 
 **En IntelliJ IDEA:**
 `Run` → `Edit Configurations...` → en `Environment variables` agregá `DB_PASSWORD=tu_password_de_mysql`.
@@ -70,13 +58,7 @@ spring.jpa.hibernate.ddl-auto=update
 
 ### 4. Ejecutar la aplicación
 
-Desde la raíz del proyecto:
-
-```bash
-mvn spring-boot:run
-```
-
-O bien, abrí el proyecto en IntelliJ IDEA y ejecutá la clase `EcommerceApplication`.
+Abrí el proyecto en IntelliJ IDEA y ejecutá la clase `EcommerceApplication`.
 
 La aplicación va a quedar disponible en:
 
