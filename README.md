@@ -1,183 +1,235 @@
-# Ecommerce - Marketplace API
+# 🛒 Ecommerce API - Spring Boot
 
-Backend desarrollado en **Java + Spring Boot** para un marketplace de productos. Permite gestionar usuarios, categorías, productos y carritos de compra, con persistencia en **MySQL** mediante JPA/Hibernate. Incluye un frontend simple en HTML, CSS y JavaScript.
+API REST para la gestión de un sistema de comercio (e-commerce), desarrollada con **Java 17** y **Spring Boot**. Permite administrar usuarios, roles, categorías, productos y carritos de compra. Incluye un frontend en HTML, CSS y JavaScript, proporcionado por la cursada y modificado para el proyecto.
 
-## Características
+---
 
-- CRUD completo de productos, categorías y carritos
-- Gestión de usuarios con roles (`ROLE_ADMIN`, `ROLE_USER`)
-- Carrito de compras por usuario: agregar, quitar y actualizar cantidades de productos con control de stock
-- Validaciones de datos con Bean Validation (`jakarta.validation`)
-- Manejo centralizado de errores con `@RestControllerAdvice`
-- Documentación interactiva de la API con Swagger / OpenAPI
-- Frontend estático (HTML/CSS/JS) servido desde el mismo backend
+## 📋 Descripción del proyecto
 
-## Tecnologías
+Este proyecto implementa el backend de una aplicación de comercio electrónico, exponiendo una API REST documentada con **Swagger / OpenAPI**, que permite:
 
-- Java 17
-- Spring Boot 4
-- Spring Data JPA / Hibernate
-- MySQL 8
-- ModelMapper
-- Lombok
-- Maven
-- Springdoc OpenAPI (Swagger UI)
+- **Gestión de usuarios**: `POST`, `GET`, `DELETE`, con asignación de roles (`ROLE_ADMIN`, `ROLE_USER`, etc.).
+- **Gestión de categorías**: CRUD completo de categorías de productos.
+- **Gestión de productos**: CRUD completo de productos asociados a una categoría, con control de stock.
+- **Gestión de carritos de compra**: CRUD completo, incluyendo creación de carritos vacíos asociados a un usuario y agregado de productos con cálculo automático del costo total y descuento de stock.
 
-## Requisitos previos
+Además, el proyecto incluye un **frontend estático básico** (HTML, CSS y JS) ubicado en `src/main/resources/static/`, accesible directamente desde `http://localhost:8080/`.
 
-- JDK 17 instalado
-- Maven 
-- MySQL Server corriendo localmente (puerto 3306 por defecto)
-- Un cliente para crear la base de datos (MySQL Workbench)
+### 🛠️ Tecnologías utilizadas
 
-## Instrucciones para ejecutar la aplicación
+| Herramienta | Versión / Detalle |
+|---|---|
+| Lenguaje | Java 17 |
+| Framework | Spring Boot |
+| Base de datos | MySQL (MySQL Workbench 8.0) |
+| IDE | IntelliJ IDEA |
+| Documentación de API | Swagger / OpenAPI |
+| Persistencia | Spring Data JPA / Hibernate |
+| Build tool | Maven |
 
-### 1. Crear la base de datos
+---
 
-Conectate a tu servidor MySQL y creá la base de datos vacía (las tablas se generan automáticamente al levantar la app):
+## ⚙️ Instrucciones para ejecutar la aplicación
+
+### 1. Requisitos previos
+
+- **Java 17** instalado.
+- **MySQL Workbench 8.0** (o MySQL Server 8.0) instalado y en ejecución.
+- **IntelliJ IDEA** (o cualquier IDE compatible con Maven).
+
+### 2. Crear la base de datos
+
+En MySQL Workbench, ejecutar:
 
 ```sql
 CREATE DATABASE ecommerce;
 ```
 
-### 2. Configurar las credenciales
+> No es necesario crear las tablas manualmente: Spring Boot/Hibernate las genera automáticamente al levantar la aplicación (según la configuración de `ddl-auto` en `application.properties`).
 
-La contraseña de la base de datos no está hardcodeada en el proyecto por seguridad. Se obtiene de una variable de entorno llamada `DB_PASSWORD`. Antes de correr la aplicación, definila con tu propia contraseña de MySQL:
+### 3. Configurar la conexión a la base de datos
 
-**En IntelliJ IDEA:**
-`Run` → `Edit Configurations...` → en `Environment variables` agregá `DB_PASSWORD=tu_password_de_mysql`.
-
-Si tu usuario o URL de conexión son distintos a los configurados por defecto, podés ajustarlos en `src/main/resources/application.properties`:
+En el archivo `src/main/resources/application.properties`, configurar las credenciales según tu instalación local:
 
 ```properties
 spring.datasource.url=jdbc:mysql://localhost:3306/ecommerce
 spring.datasource.username=root
-spring.datasource.password=${DB_PASSWORD}
-spring.jpa.hibernate.ddl-auto=update
+spring.datasource.password=tu_contraseña
 ```
 
-### 4. Ejecutar la aplicación
+### 4. Abrir y ejecutar el proyecto en IntelliJ IDEA
 
-Abrí el proyecto en IntelliJ IDEA y ejecutá la clase `EcommerceApplication`.
+1. Abrir IntelliJ IDEA → `File` → `Open` → seleccionar la carpeta del proyecto.
+2. Esperar a que se descarguen las dependencias de Maven.
+3. Verificar que el **SDK del proyecto sea Java 17** (`File` → `Project Structure` → `Project SDK`).
+4. Ejecutar la clase principal (`*Application.java`, la anotada con `@SpringBootApplication`).
 
-La aplicación va a quedar disponible en:
+### 5. Verificar que la aplicación está corriendo
+
+Una vez iniciada, la aplicación queda disponible en:
 
 ```
 http://localhost:8080
 ```
 
-Al levantar el backend, vas a ver el frontend (HTML/CSS/JS ubicado en `src/main/resources/static`) servido directamente en la raíz `http://localhost:8080/`.
+### 6. Acceder a Swagger UI
 
-### 5. Datos iniciales
-
-Al arrancar por primera vez, la aplicación crea automáticamente los roles base en la tabla `roles`:
-
-- `ROLE_USER`
-- `ROLE_ADMIN`
-
-No hace falta cargarlos a mano.
-
-## Documentación de la API (Swagger)
-
-Con la aplicación corriendo, podés explorar todos los endpoints disponibles desde:
+Toda la API se puede explorar y probar desde Swagger:
 
 ```
-http://localhost:8080/swagger-ui.html
+http://localhost:8080/swagger-ui/index.html
 ```
 
-## Ejemplos de uso
+Desde ahí se pueden ejecutar todos los endpoints (`POST`, `GET`, `PUT`, `DELETE`, `PATCH`) de forma interactiva.
 
-### Crear una categoría
+---
 
-```http
-POST /categorias
-Content-Type: application/json
+## ℹ️ Nota sobre los roles de usuario
 
+Los roles **se generan automáticamente** al iniciar la aplicación, mediante un `DataInitializer` ubicado en el paquete `configuration/` (`src/main/java/com/techlab/ecommerce/configuration/`). Esta clase inserta los roles base en la base de datos la primera vez que se levanta el proyecto, por lo que:
+
+- ✅ **No es necesario crear los roles manualmente en la base de datos** (ni con scripts SQL ni desde MySQL Workbench).
+- ✅ Si borrás los datos de la tabla `roles` y reiniciás la aplicación, el `DataInitializer` los vuelve a crear automáticamente.
+
+> ⚠️ **AVISO IMPORTANTE — Cómo asignar el rol:**
+> Al crear un usuario (`POST /usuarios`), el campo `roles` **acepta solo el `nombre` del rol** (no es necesario ni funcional indicar el `id`). Completá el campo `nombre` con uno de los siguientes valores, ya generados automáticamente por el `DataInitializer`:
+>
+> | Nombre del rol |
+> |---|
+> | `ROLE_USER` |
+> | `ROLE_ADMIN` |
+>
+> Ejemplo de cómo completar el campo en el `request body`:
+> ```json
+> "roles": [
+>   { "nombre": "ROLE_ADMIN" }
+> ]
+> ```
+> El sistema busca el rol existente en la base de datos por su `nombre` y lo asocia al usuario automáticamente.
+
+---
+
+## 🧪 Ejemplos de uso / datos de prueba
+
+A continuación se detalla el flujo completo de prueba de la API, en el orden correcto para que las relaciones entre entidades funcionen correctamente.
+
+### 1️⃣ Crear un usuario (con rol asignado)
+
+**POST** `/usuarios`
+
+**Request / Response:**
+```json
 {
-  "nombreCategoria": "Electrónica",
-  "descripcionCategoria": "Productos electrónicos y gadgets"
-}
-```
-
-### Crear un producto
-
-```http
-POST /productos
-Content-Type: application/json
-
-{
-  "nombre": "Mouse inalámbrico",
-  "descripcion": "Mouse ergonómico con batería recargable",
-  "precio": 15000,
-  "stock": 50,
-  "categoriaId": 1,
-  "imagenUrl": "https://ejemplo.com/mouse.jpg"
-}
-```
-
-### Listar todos los productos
-
-```http
-GET /productos/lista
-```
-
-### Buscar productos por categoría
-
-```http
-GET /productos/categoria/id/1
-```
-
-### Crear un usuario
-
-```http
-POST /usuarios
-Content-Type: application/json
-
-{
+  "id": 1,
   "nombre": "Tamara",
-  "email": "tamara@example.com",
-  "password": "12345678"
+  "email": "tamaramicaelacamino@gmail.com",
+  "activo": true,
+  "fechaCreacion": "2026-06-30T19:29:41.382539",
+  "roles": [
+    {
+      "id": 2,
+      "nombre": "ROLE_ADMIN"
+    }
+  ]
 }
 ```
 
-### Crear un carrito para un usuario
+### 2️⃣ Crear una categoría
 
-```http
-POST /carritos?usuarioId=1
+**POST** `/categorias`
+
+```json
+{
+  "id": 1,
+  "nombreCategoria": "Tecnologia",
+  "descripcionCategoria": "Productos electrónicos como laptops, celulares y accesorios"
+}
 ```
 
-### Agregar un producto al carrito
+### 3️⃣ Crear un producto
 
-```http
-POST /carritos/1/productos/1?cantidad=2
+**POST** `/productos`
+
+> Se debe indicar el `categoriaId` correspondiente a una categoría ya existente. El response devuelve el producto junto con el detalle completo de su categoría asociada.
+
+```json
+{
+  "id": 1,
+  "nombre": "Samsung Galaxy A06",
+  "descripcion": "4gb ram, memoria interna de 64GB, color negro",
+  "precio": 215999,
+  "categoriaId": 1,
+  "categoria": {
+    "id": 1,
+    "nombreCategoria": "Tecnologia",
+    "descripcionCategoria": "Productos electrónicos como laptops, celulares y accesorios"
+  },
+  "imagenUrl": "https://http2.mlstatic.com/D_NQ_NP_2X_821107-MLA108497055364_032026-F.webp",
+  "stock": 100
+}
 ```
 
-### Ver el carrito de un usuario
+### 4️⃣ Crear un carrito vacío
 
-```http
-GET /carritos/usuario/1
+**POST** `/carritos`
+
+> Solo es necesario indicar el `usuario_id` al que se asociará el carrito. El resto de los campos se completan vacíos hasta que se agreguen productos.
+
+```json
+{
+  "id": 1,
+  "usuario_id": 1,
+  "costoTotal": 0,
+  "lineaCarrito": []
+}
 ```
 
-### Actualizar la cantidad de un producto en el carrito
+### 5️⃣ Agregar un producto al carrito
 
-```http
-PATCH /carritos/1/productos/1?cantidad=5
+**POST** `/carritos/{carritoId}/productos/{productoId}`
+
+> Se indican el `carritoId`, el `productoId` y la cantidad solicitada como parámetro. El `costoTotal` se calcula automáticamente y el `stock` del producto se descuenta según la cantidad agregada.
+
+```json
+{
+  "id": 1,
+  "usuario_id": 1,
+  "costoTotal": 863996,
+  "lineaCarrito": [
+    {
+      "id": 1,
+      "productoId": 1,
+      "cantidad": 4,
+      "precioUnitario": 215999,
+      "producto": {
+        "id": 1,
+        "nombre": "Samsung Galaxy A06",
+        "descripcion": "4gb ram, memoria interna de 64GB, color negro",
+        "precio": 215999,
+        "categoriaId": 1,
+        "categoria": {
+          "id": 1,
+          "nombreCategoria": "Tecnologia",
+          "descripcionCategoria": "Productos electrónicos como laptops, celulares y accesorios"
+        },
+        "imagenUrl": "https://http2.mlstatic.com/D_NQ_NP_2X_821107-MLA108497055364_032026-F.webp",
+        "stock": 96
+      }
+    }
+  ]
+}
 ```
 
-### Eliminar un producto del carrito
+---
 
-```http
-DELETE /carritos/1/productos/1
-```
-
-## Estructura del proyecto
+## 📂 Estructura del proyecto
 
 ```
 src/main/java/com/techlab/ecommerce/
-├── configuration/      # CORS, ModelMapper, carga inicial de datos
+├── configuration/      # CORS, ModelMapper, carga inicial de datos (DataInitializer)
 ├── controllers/api/    # Controllers REST
-├── dtos/                # Objetos de transferencia de datos
-├── entities/            # Entidades JPA
+├── dtos/                # Objetos de transferencia de datos (DTOs)
+├── entities/            # Entidades JPA (Usuario, Rol, Categoria, Producto, Carrito, LineaCarrito)
 ├── exceptions/          # Excepciones personalizadas y manejo global de errores
 ├── repositories/        # Repositorios Spring Data JPA
 └── services/             # Lógica de negocio (interfaces + implementaciones)
@@ -187,3 +239,7 @@ src/main/resources/
 └── application.properties
 ```
 
+---
+
+## 👩‍💻 Autor
+Tamara Camino 
