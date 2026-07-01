@@ -92,7 +92,7 @@ Los roles **se generan automáticamente** al iniciar la aplicación, mediante un
 - ✅ Si borrás los datos de la tabla `roles` y reiniciás la aplicación, el `DataInitializer` los vuelve a crear automáticamente.
 
 > ⚠️ **AVISO IMPORTANTE — Cómo asignar el rol:**
-> Al crear un usuario (`POST /usuarios`), el campo `roles` **acepta solo el `nombre` del rol** (no es necesario ni funcional indicar el `id`). Completá el campo `nombre` con uno de los siguientes valores, ya generados automáticamente por el `DataInitializer`:
+> Al crear un usuario (`POST /usuarios`), el campo `roles` **acepta solo el `nombre` del rol** . Completá el campo `nombre` con uno de los siguientes valores, ya generados automáticamente por el `DataInitializer`:
 >
 > | Nombre del rol |
 > |---|
