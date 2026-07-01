@@ -62,7 +62,7 @@ spring.datasource.password=tu_contraseña
 1. Abrir IntelliJ IDEA → `File` → `Open` → seleccionar la carpeta del proyecto.
 2. Esperar a que se descarguen las dependencias de Maven.
 3. Verificar que el **SDK del proyecto sea Java 17** (`File` → `Project Structure` → `Project SDK`).
-4. Ejecutar la clase principal (`*Application.java`, la anotada con `@SpringBootApplication`).
+4. Ejecutar la clase principal EcommerceApplication.java (anotada con @SpringBootApplication), ubicada en src/main/java/com/techlab/ecommerce/.
 
 ### 5. Verificar que la aplicación está corriendo
 
