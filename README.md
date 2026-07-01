@@ -109,7 +109,7 @@ Los roles **se generan automáticamente** al iniciar la aplicación, mediante un
 
 ---
 
-## 🧪 Ejemplos de uso / datos de prueba
+## Ejemplos de uso / datos de prueba
 
 A continuación se detalla el flujo completo de prueba de la API, en el orden correcto para que las relaciones entre entidades funcionen correctamente.
 
