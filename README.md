@@ -33,7 +33,7 @@ Además, el proyecto incluye un **frontend estático básico** (HTML, CSS y JS) 
 
 ### 1. Requisitos previos
 
-- **Java 17** instalado.
+- **Java 17** 
 - **MySQL Workbench 8.0** (o MySQL Server 8.0) instalado y en ejecución.
 - **IntelliJ IDEA** (o cualquier IDE compatible con Maven).
 
