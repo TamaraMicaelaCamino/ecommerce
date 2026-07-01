@@ -241,5 +241,5 @@ src/main/resources/
 
 ---
 
-## 👩‍💻 Autor
-Tamara Camino 
+## Autor
+Tamara Micaela Camino 
