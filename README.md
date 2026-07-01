@@ -8,7 +8,7 @@ API REST para la gestión de un sistema de comercio (e-commerce), desarrollada c
 
 Este proyecto implementa el backend de una aplicación de comercio, exponiendo una API REST documentada con **Swagger / OpenAPI**, que permite:
 
-- **Gestión de usuarios**: `POST`, `GET`, `DELETE`, con asignación de roles (`ROLE_ADMIN`, `ROLE_USER`, etc.).
+- **Gestión de usuarios**: `POST`, `GET`, `DELETE`, con asignación de roles (`ROLE_ADMIN`, `ROLE_USER`).
 - **Gestión de categorías**: CRUD completo de categorías de productos.
 - **Gestión de productos**: CRUD completo de productos asociados a una categoría, con control de stock.
 - **Gestión de carritos de compra**: CRUD completo, incluyendo creación de carritos vacíos asociados a un usuario y agregado de productos con cálculo automático del costo total y descuento de stock.
