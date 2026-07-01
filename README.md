@@ -10,7 +10,7 @@ Este proyecto implementa el backend de una aplicación de comercio, exponiendo u
 
 - **Gestión de usuarios**: `POST`, `GET`, `DELETE`, con asignación de roles (`ROLE_ADMIN`, `ROLE_USER`).
 - **Gestión de categorías**: CRUD completo de categorías de productos.
-- **Gestión de productos**: CRUD completo de productos asociados a una categoría, con control de stock.
+- **Gestión de productos**: CRUD completo de productos asociados a una categoría.
 - **Gestión de carritos de compra**: CRUD completo, incluyendo creación de carritos vacíos asociados a un usuario y agregado de productos con cálculo automático del costo total y descuento de stock.
 
 Además, el proyecto incluye un **frontend estático básico** (HTML, CSS y JS) ubicado en `src/main/resources/static/`, accesible directamente desde `http://localhost:8080/`.
