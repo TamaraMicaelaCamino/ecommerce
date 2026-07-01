@@ -1,4 +1,4 @@
-# 🛒 Ecommerce API - Spring Boot
+# Ecommerce API - Spring Boot
 
 API REST para la gestión de un sistema de comercio (e-commerce), desarrollada con **Java 17** y **Spring Boot**. Permite administrar usuarios, roles, categorías, productos y carritos de compra. Incluye un frontend en HTML, CSS y JavaScript, proporcionado por la cursada y modificado para el proyecto.
 
